@@ -1,0 +1,111 @@
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <div class="col" *ngIf="authService.userData as user">
+          <h4>{{(user.displayName) ? user.displayName : 'User'}}</h4>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="authService.SignOut()">
+          <i class="fas fa-sign-out-alt"></i>Log out
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./dashboard">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="header">
+    <h1 style="text-align:center;">Clínica Veterinaria</h1>
+</div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<div class="container1">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="well well-sm">
+                
+                    <div class="form-group"><input type="hidden" class="form-control" id="llave"  ></div>
+                    
+                    <div class="form-group">        
+                        <label class="control-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ricardo Espinal" [(ngModel)]="nombre" required>
+                    </div>    
+                    <div class="form-group"> 
+                        <label class="control-label">DUI:</label>
+                        <input type="text" class="form-control" id="dui" name="dui" placeholder="05049100-0" [(ngModel)]="dui" required>
+                    </div>                    
+                                            
+                    <div class="form-group"> 
+                        <label class="control-label">Nombre de la mascota:</label>
+                        <input type="text" class="form-control" id="nombremascota" name="nombremascota" placeholder="Rocko" [(ngModel)]="nombremascota" required>
+                    </div>    
+                
+                    <div class="form-group"> 
+                        <label class="control-label">Medicamento:</label>
+                        <input type="text" class="form-control" id="medicamento" name="medicamento" placeholder="Antiparasitarios" [(ngModel)]="medicamento" required>
+                    </div>                                    
+                                            
+                    <div class="form-group"> 
+                        <label class="control-label">Tratamiento:</label>
+                        <select class="form-control" [(ngModel)]="tratamiento" (change)="capturar()" required>
+                                <option value="Selecciona">Selecciona una opción</option>
+                                <option *ngFor="let u of trata" value="{{u}}">
+                                {{u}}
+                                </option>
+                        </select>                    
+                    </div>
+                    
+                    <div class="form-group"> 
+                        <label for="costo" class="control-label">Costo:</label>
+                        <input type="number" class="form-control" min="7" [(ngModel)]="costo" id="costo" name="costo" placeholder="$100" required>
+                    </div>        
+                    
+                    <div class="form-group"> 
+                        <button type="submit" class="btn btn-primary" (click)="calcular()" (click)="guardar()"  [hidden]="contador > 0">Registrar</button>
+                        <button type="submit" class="btn btn-primary" (click)="calcular()" (click)="guardar()"  [hidden]="contador <= 0 ">Registrar nuevamente</button>
+                        <br><br>
+                        <p class="error">{{error}}</p>
+                    </div>                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="btn-group">
+    <input type="text" class="form-control" id="buscar" placeholder="buscar persona" [(ngModel)]='buscar'>
+    <button class="btn btn-primary">Consultar</button>
+</div>
+
+<table >
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dui</th>
+            <th>Nombre de la mascota</th>
+            <th>Medicamento</th>
+            <th>Tratamiento</th>
+            <th>Costo</th>
+            <th>Descuento aplicado</th>
+            <th>Costo final</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let tpersona of registro">
+            <td>{{tpersona.nombre}}</td>
+            <td>{{tpersona.dui}}</td>
+            <td>{{tpersona.nombremascota}}</td>
+            <td>{{tpersona.medicamento}}</td>
+            <td>{{tpersona.trata1}}</td>
+            <td>{{tpersona.costo}}</td>
+            <td>{{tpersona.descuentot}}</td>
+            <td>{{tpersona.montot}}</td>
+        </tr>
+    </tbody>
+</table>
