@@ -112,10 +112,10 @@ export class ComboBoxComponent implements OnInit {
     let letra = new RegExp(/^[\u00F1A-Za-z _]*[\u00F1A-Za-z][\u00F1A-Za-z _]*$/);//Validar que solo hayan letras
     let formato = new RegExp("^[0-9]{8}-[0-9]{1}$");//Validacion de formato DUI 00000000-0
     this.error = "";
-                     //this.persona={"nombre":this.nombre,"dui":this.dui,"nombremascota":this.nombremascota,"trata1":this.trata1,"medicamento":this.medicamento,"costo":this.costo,"descuentot":this.descuentot,"montot":this.montot};
-                     //this.registro.push(this.persona);
+                     this.persona={"nombre":this.nombre,"dui":this.dui,"nombremascota":this.nombremascota,"trata1":this.trata1,"medicamento":this.medicamento,"costo":this.costo,"descuentot":this.descuentot,"montot":this.montot};
+                     this.registro.push(this.persona);
                      this.persona={"nombre":this.nombre,"dui":this.dui,"mascota":this.nombremascota,"trata":this.trata1,"medica":this.medicamento,"costo":this.costo,"descu":this.descuentot,"costoF":this.montot};                       
-                       /*this.objVenta.nombre = this.nombre;
+                       this.objVenta.nombre = this.nombre;
                        this.objVenta.dui = this.dui;
                        this.objVenta.mascota = this.nombremascota;
                        this.objVenta.trata = this.trata1;
@@ -123,8 +123,7 @@ export class ComboBoxComponent implements OnInit {
                        this.objVenta.costo = this.costo;
                        this.objVenta.descu = this.descuentot;
                        this.objVenta.costoF = this.montot;
-                      this.ventaService.insertVenta(this.persona);
-                       this.contador++;*/
+                       this.contador++;
   }
 }
   
