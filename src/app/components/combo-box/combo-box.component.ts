@@ -34,6 +34,8 @@ export class ComboBoxComponent implements OnInit {
   trata1:string;
   buscar: string;
 
+  ticket:boolean = false;//Para mostrar el ticket y esconder el form y viceversa
+
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -72,7 +74,7 @@ export class ComboBoxComponent implements OnInit {
     this.visitas=1;
     if(this.contador===0)
     {
-    
+          
     }
     else
     {
@@ -124,6 +126,11 @@ export class ComboBoxComponent implements OnInit {
                        this.objVenta.descu = this.descuentot;
                        this.objVenta.costoF = this.montot;
                        this.contador++;
+                       this.ticket = true;
+  }
+
+  apareceForm(){
+    this.ticket=false;
   }
 }
   
