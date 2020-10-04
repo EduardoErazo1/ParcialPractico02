@@ -17,8 +17,8 @@ table {
     text-align: left;    
     border-collapse: collapse; 
     position: relative;
-    left:320px;
-    top:-550px;
+    left:25%;
+    top:-650px;
 }
 
 th {     
@@ -49,5 +49,19 @@ tr:hover td {
 h4{
     padding-top: 4px;
     text-align: center;
-    color:#555;
+    color:white;
+}
+
+.form-group {
+    padding-right:30%;
+}
+
+label {
+    color:black;
+    font-size: medium;
+}
+
+h1{
+    padding-top: 10px;
+    color:black;
 }

@@ -7,6 +7,9 @@ import {VentaService} from '../../services/venta.service'
 //Service
 import { AuthService } from "../../services/auth.service";
 
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+
 @Component({
   selector: 'app-combo-box',
   templateUrl: './combo-box.component.html',
@@ -97,7 +100,7 @@ export class ComboBoxComponent implements OnInit {
       }
       if(this.visitas>4)
       {
-        this.descuentot="10%";
+        this.descuentot="8%";
         this.monto = this.costo * this.descuento2;
         this.montot = this.costo - this.monto;
       }      
@@ -131,6 +134,19 @@ export class ComboBoxComponent implements OnInit {
 
   apareceForm(){
     this.ticket=false;
+  }
+
+  //pdf
+  download(){
+    var element = document.getElementById('pdf')
+    html2canvas(element).then((canvas) => {
+      console.log(canvas)
+      var imgData = canvas.toDataURL('image/png')
+      var doc = new jspdf()
+      var imgHeight = canvas.height * 208 / canvas.width;
+      doc.addImage(imgData,0,0,208,imgHeight)
+      doc.save("factura.pdf")
+    })
   }
 }
   
