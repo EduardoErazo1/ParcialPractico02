@@ -7,6 +7,8 @@ import { Cliente } from '../../../models/cliente';
 // toastr
 import { ToastrService } from 'ngx-toastr';
 
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
@@ -14,7 +16,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ClienteComponent implements OnInit {
 
-  
+ticket:boolean=false;
+clientef:NgForm;
+cliente:Cliente;
   constructor(
     public clienteService: ClienteService,
     public toastr: ToastrService
@@ -30,8 +34,26 @@ export class ClienteComponent implements OnInit {
     else
       this.clienteService.updateCliente(clienteForm.value);
 
-    this.resetForm(clienteForm);
+    this.ticket=true;
+    this.clientef=clienteForm;
     this.toastr.success('Sucessful Operation', 'Cliente registrado');
+  }
+  download(){
+    var element = document.getElementById('pdf')
+    html2canvas(element).then((canvas) => {
+      console.log(canvas)
+      var imgData = canvas.toDataURL('image/png')
+      var doc = new jspdf()
+      var imgHeight = canvas.height * 208 / canvas.width;
+      doc.addImage(imgData,0,0,208,imgHeight)
+      doc.save("factura.pdf")
+    })
+  }
+  apareceForm()
+  {
+    this.ticket=false;
+    this.resetForm(this.clientef);
+    
   }
   // Para limpiar el formulario
   resetForm(clienteForm?: NgForm) {
