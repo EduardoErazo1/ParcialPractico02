@@ -14,7 +14,7 @@
                     <td>Tratamiento</td>
                     <td>Medicamento</td>
                     <td>Costo</td>
-                    <td>Actulizar  Eliminar</td>
+                    <td>Actulizar  Eliminar    Ver</td>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +34,9 @@
                         </a>
                       <a class="btn btn-danger text-white" (click)="onDelete(cliente.$key)">
                             <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <a  class="btn btn-secondary text-white" (click)="onEdit2(cliente)">
+                            <i class="far fa-view"></i>
                         </a>
                         
                     </td>

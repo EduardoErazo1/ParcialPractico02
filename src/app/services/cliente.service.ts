@@ -16,6 +16,7 @@ export class ClienteService {
   selectedCliente: Cliente = new Cliente();
 
   ticket:boolean=false;
+  ticket2:boolean=false;
   clientef:NgForm;
   cliente:Cliente;
   constructor(private firebase: AngularFireDatabase) { }

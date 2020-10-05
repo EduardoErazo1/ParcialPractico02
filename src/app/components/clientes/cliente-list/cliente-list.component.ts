@@ -45,7 +45,10 @@ export class ClienteListComponent implements OnInit {
   onEdit(cliente: Cliente) {
     this.clienteService.selectedCliente = Object.assign({}, cliente);
   }
-
+  onEdit2(cliente: Cliente) {
+    this.clienteService.selectedCliente = Object.assign({}, cliente);
+    this.clienteService2.ticket=true;
+  }
   onDelete($key: string) {
     if (confirm('Are you sure you want to delete it?')) {
       this.clienteService.deleteProduct($key);
