@@ -16,9 +16,9 @@ import html2canvas from 'html2canvas';
 })
 export class ClienteComponent implements OnInit {
 
-ticket:boolean=false;
+/*ticket:boolean=false;
 clientef:NgForm;
-cliente:Cliente;
+cliente:Cliente;*/
   constructor(
     public clienteService: ClienteService,
     public toastr: ToastrService
@@ -34,8 +34,8 @@ cliente:Cliente;
     else
       this.clienteService.updateCliente(clienteForm.value);
 
-    this.ticket=true;
-    this.clientef=clienteForm;
+    this.clienteService.ticket=true;
+    this.clienteService.clientef=clienteForm;
     this.toastr.success('Sucessful Operation', 'Cliente registrado');
   }
   download(){
@@ -51,8 +51,8 @@ cliente:Cliente;
   }
   apareceForm()
   {
-    this.ticket=false;
-    this.resetForm(this.clientef);
+    this.clienteService.ticket=false;
+    this.resetForm(this.clienteService.clientef);
     
   }
   // Para limpiar el formulario

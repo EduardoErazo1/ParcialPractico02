@@ -1,5 +1,5 @@
 <p>UNO product works!</p>
-<div class="card mt-5" [hidden]="ticket">
+<div class="card mt-5" [hidden]="clienteService.ticket">
     <div class="card-body">
 
         <!-- Cuando el evento onSubmit , suceda se va pasar todo el formulario 'productForm' -->
@@ -51,7 +51,7 @@
 </div>
 
  <!-- Apartado de ticket  -->   
- <div id="pdf" [hidden]="!ticket">
+ <div id="pdf" [hidden]="!clienteService.ticket">
     <h2>Los datos de la compra</h2>
     <div class="row mb-2">
         <div class="col-md-8">

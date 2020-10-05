@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { query } from '@angular/animations';
+import { NgForm } from '@angular/forms';
 // Firebase
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
@@ -14,7 +15,9 @@ export class ClienteService {
   // Una variable temporal, para guardar los datos seleccionados, del tipo Product
   selectedCliente: Cliente = new Cliente();
 
-
+  ticket:boolean=false;
+  clientef:NgForm;
+  cliente:Cliente;
   constructor(private firebase: AngularFireDatabase) { }
     // Traer todos los productos desde firebase 
     getClientes() { // guarda los elementos en la varible 'clientes'
