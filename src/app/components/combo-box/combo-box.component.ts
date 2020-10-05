@@ -17,8 +17,8 @@ import html2canvas from 'html2canvas';
 })
 export class ComboBoxComponent implements OnInit {
   objVenta: Venta = new Venta();
-  registro=[];
-  persona:any;
+  registro:Venta[];
+  persona:Venta;
   nombre:string;
   dui:string;
   nombremascota:string;
@@ -36,7 +36,8 @@ export class ComboBoxComponent implements OnInit {
   error:string;
   trata1:string;
   buscar: string;
-
+  modi:number;
+  id:number;
   ticket:boolean = false;//Para mostrar el ticket y esconder el form y viceversa
 
   constructor(public authService: AuthService) { }
@@ -56,6 +57,8 @@ export class ComboBoxComponent implements OnInit {
     this.trata1='';
     this.tratamiento = "Selecciona";
     this.error='';
+    this.modi=0;
+    this.id=0;
   }
   
   //Funciones
@@ -109,17 +112,20 @@ export class ComboBoxComponent implements OnInit {
 }
   
   guardar(){
-    if(this.contador===0)
+    if(this.modi==0)
     {
-      this.montot = this.costo;
-    }
-    let vacio = new RegExp("^[^]+$");//Validar que no este en blanco
-    let letra = new RegExp(/^[\u00F1A-Za-z _]*[\u00F1A-Za-z][\u00F1A-Za-z _]*$/);//Validar que solo hayan letras
-    let formato = new RegExp("^[0-9]{8}-[0-9]{1}$");//Validacion de formato DUI 00000000-0
-    this.error = "";
-                     this.persona={"nombre":this.nombre,"dui":this.dui,"nombremascota":this.nombremascota,"trata1":this.trata1,"medicamento":this.medicamento,"costo":this.costo,"descuentot":this.descuentot,"montot":this.montot};
+      if(this.contador===0)
+      {
+        this.montot = this.costo;
+      }
+      let vacio = new RegExp("^[^]+$");//Validar que no este en blanco
+     let letra = new RegExp(/^[\u00F1A-Za-z _]*[\u00F1A-Za-z][\u00F1A-Za-z _]*$/);//Validar que solo hayan letras
+      let formato = new RegExp("^[0-9]{8}-[0-9]{1}$");//Validacion de formato DUI 00000000-0
+      this.error = "";
+                     this.id++;
+                      this.persona={"id":this.id,"nombre":this.nombre,"dui":this.dui,"mascota":this.nombremascota,"trata":this.trata1,"medica":this.medicamento,"costo":this.costo,"descu":this.descuentot,"costoF":this.montot};
                      this.registro.push(this.persona);
-                     this.persona={"nombre":this.nombre,"dui":this.dui,"mascota":this.nombremascota,"trata":this.trata1,"medica":this.medicamento,"costo":this.costo,"descu":this.descuentot,"costoF":this.montot};                       
+                     this.persona={"id":this.id,"nombre":this.nombre,"dui":this.dui,"mascota":this.nombremascota,"trata":this.trata1,"medica":this.medicamento,"costo":this.costo,"descu":this.descuentot,"costoF":this.montot};                       
                        this.objVenta.nombre = this.nombre;
                        this.objVenta.dui = this.dui;
                        this.objVenta.mascota = this.nombremascota;
@@ -130,12 +136,59 @@ export class ComboBoxComponent implements OnInit {
                        this.objVenta.costoF = this.montot;
                        this.contador++;
                        this.ticket = true;
+                       this.reiniciarV();
   }
+  else if(this.modi==1)
+  {
+    let vacio = new RegExp("^[^]+$");//Validar que no este en blanco
+    let letra = new RegExp(/^[\u00F1A-Za-z _]*[\u00F1A-Za-z][\u00F1A-Za-z _]*$/);//Validar que solo hayan letras
+     let formato = new RegExp("^[0-9]{8}-[0-9]{1}$");//Validacion de formato DUI 00000000-0
+     this.error = "";
+                    
+                   // this.registro[this.objVenta.id-1].dui= (this.objVenta.dui);
+                    this.persona={"id":0,"nombre":this.nombre,"dui":this.dui,"mascota":this.nombremascota,"trata":this.trata1,"medica":this.medicamento,"costo":this.costo,"descu":this.descuentot,"costoF":this.montot};                       
+                      this.objVenta.nombre = this.nombre;
+                      this.objVenta.dui = this.dui;
+                      this.objVenta.mascota = this.nombremascota;
+                      this.objVenta.trata = this.trata1;
+                      this.objVenta.medica = this.medicamento;
+                      this.objVenta.costo = this.costo;
+                      this.objVenta.descu = this.descuentot;
+                      this.objVenta.costoF = this.montot;
+                      this.contador++;
+                      this.ticket = true; 
+                      this.reiniciarV();
+                      
+  }
+}
 
+select(arreglo: Venta)
+{
+  this.objVenta.id=arreglo.id;
+  this.objVenta.nombre =arreglo.nombre;
+  this.objVenta.dui=arreglo.dui;
+  this.objVenta.mascota=arreglo.mascota;
+  this.objVenta.trata=arreglo.trata;
+  this.objVenta.medica=arreglo.medica;
+   this.objVenta.costo=arreglo.costo;
+   this.objVenta.descu=arreglo.descu;
+   this.objVenta.costoF=arreglo.costoF;
+   this.modi=1;
+}
   apareceForm(){
     this.ticket=false;
   }
-
+reiniciarV()
+{
+  this.nombre="";
+  this.dui="";
+  this.trata1="";
+  this.medicamento="";
+  this.costo=0;
+  this.descuentot=""
+  this.montot=0;
+  this.modi=0;
+}
   //pdf
   download(){
     var element = document.getElementById('pdf')

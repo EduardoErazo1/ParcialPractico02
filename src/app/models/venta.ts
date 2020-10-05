@@ -1,5 +1,5 @@
 export class Venta {
-    $key: string;
+    id: number;
     nombre: string;
     dui: string;
     mascota: string;

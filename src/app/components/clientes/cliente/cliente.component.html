@@ -1,0 +1,52 @@
+<p>UNO product works!</p>
+
+<div class="card mt-5">
+    <div class="card-body">
+
+        <!-- Cuando el evento onSubmit , suceda se va pasar todo el formulario 'productForm' -->
+        <form #clienteForm="ngForm" (ngSubmit)="onSubmit(clienteForm)">
+
+            <!-- TO UPDATE -->
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="clienteService.selectedCliente.$key">
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="nombre" #name="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.nombre" placeholder="Nombre">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="dui" #category="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.dui" placeholder="Dui">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="nombreM" #name="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.nombreM" placeholder="Nombre Mascota">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="tratamiento" #category="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.tratamiento" placeholder="Tratamiento">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="medicamento" #name="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.medicamento" placeholder="Medicamento">
+            </div>
+
+            <div class="form-group">
+                <input type="number" class="form-control" name="costo" #location="ngModel"
+                    [(ngModel)]="clienteService.selectedCliente.costo" placeholder="Costo">
+            </div>
+            
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-plus-circle"></i> Agregar CLiente
+                </button>
+                <button class="btn btn-secondary" type="reset" (click)="resetForm(clienteForm)">
+                    <i class="fas fa-sync-alt"></i> Reset
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
