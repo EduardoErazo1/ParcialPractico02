@@ -20,6 +20,7 @@ export class ClienteListComponent implements OnInit {
 
   
   constructor(
+    public clienteService2: ClienteService,
     private clienteService: ClienteService,
     private toastr: ToastrService,
     private firebase: AngularFireDatabase

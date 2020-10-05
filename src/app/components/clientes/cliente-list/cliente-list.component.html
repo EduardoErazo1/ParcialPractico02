@@ -1,11 +1,24 @@
-<p>cliente-list works!</p>
-<div class="card">
+
+<div class="card" [hidden]="clienteService2.ticket">
     <div class="card-body">
         <h6 class="text-center">
-            List of Cliente
+            Lista de clientes
         </h6>
         <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <td>Clave firebase</td>              
+                    <td >Nombre</td>
+                    <td>Dui</td>
+                    <td>Nombre Mascota</td>
+                    <td>Tratamiento</td>
+                    <td>Medicamento</td>
+                    <td>Costo</td>
+                    <td>Actulizar  Eliminar</td>
+                </tr>
+            </thead>
             <tbody>
+               
                 <tr *ngFor="let cliente of clienteList">
                     <td>{{cliente.$key}}</td>              
                     <td >{{cliente.nombre}}</td>
