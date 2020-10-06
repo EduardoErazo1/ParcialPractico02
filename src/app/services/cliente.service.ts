@@ -55,6 +55,8 @@ export class ClienteService {
       }
 
       cliente.total = cliente.costo -(cliente.costo * cliente.descuento);
+      this.selectedCliente.total= cliente.total;
+      this.selectedCliente.descuento= cliente.descuento;
 
     // agregar un dato al final de la lista, como recibe un objeto del tipo Product , puede acceder a sus propiedades
     this.clienteList.push({

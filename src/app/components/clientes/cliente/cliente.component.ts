@@ -36,7 +36,7 @@ cliente:Cliente;*/
 
     this.clienteService.ticket=true;
     this.clienteService.clientef=clienteForm;
-    this.toastr.success('Sucessful Operation', 'Cliente registrado');
+    this.toastr.success('Operación exitosa', 'Cliente registrado');
   }
   download(){
     var element = document.getElementById('pdf')
