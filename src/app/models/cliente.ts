@@ -6,5 +6,6 @@ export class Cliente {
     tratamiento:string;
     medicamento:string;
     costo:number;
-
+    descuento: number;
+    total: number
 }

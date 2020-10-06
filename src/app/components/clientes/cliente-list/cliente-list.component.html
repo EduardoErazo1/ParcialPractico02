@@ -1,32 +1,45 @@
 
+<div [hidden]="clienteService2.ticket">
+    <img src="https://image.freepik.com/vector-gratis/veterinario-medico-perro-gato-mostrador-clinica-veterinaria_36082-523.jpg" style="padding-left:10px;">
+</div>
 <div class="card" [hidden]="clienteService2.ticket">
     <div class="card-body">
+        <div class="btn-group">
+            <input type="text" class="form-control" id="buscar" [(ngModel)]='buscar'>
+            <button class="btn btn-primary" (click)="consulClie();">Buscar</button>
+        </div>  
+        <br>
+        <br>      
         <h6 class="text-center">
             Lista de clientes
         </h6>
         <table class="table table-sm table-hover">
             <thead>
                 <tr>
-                    <td>Clave firebase</td>              
+                              
                     <td >Nombre</td>
                     <td>Dui</td>
                     <td>Nombre Mascota</td>
                     <td>Tratamiento</td>
                     <td>Medicamento</td>
                     <td>Costo</td>
-                    <td>Actulizar  Eliminar    Ver</td>
+                    <td>Descuento</td>
+                    <td>Total</td>
+                    <td>Actualizar  Eliminar    Factura</td>
                 </tr>
             </thead>
             <tbody>
                
                 <tr *ngFor="let cliente of clienteList">
-                    <td>{{cliente.$key}}</td>              
+                                
                     <td >{{cliente.nombre}}</td>
                     <td>{{cliente.dui}}</td>
                     <td>{{cliente.nombreM}}</td>
                     <td>{{cliente.tratamiento}}</td>
                     <td>{{cliente.medicamento}}</td>
                     <td>{{cliente.costo}}</td>
+                    <td>{{cliente.descuento}}</td>
+                    <td>{{cliente.total}}</td>
                     <td>
                      
                         <a  class="btn btn-secondary text-white" (click)="onEdit(cliente)">
@@ -36,13 +49,14 @@
                             <i class="fas fa-trash-alt"></i>
                         </a>
                         <a  class="btn btn-secondary text-white" (click)="onEdit2(cliente)">
-                            <i class="far fa-view"></i>
+                            <i class="fas fa-print"></i>
                         </a>
                         
                     </td>
                 </tr>
             </tbody>
         </table>
+       
     </div>
 </div>
 

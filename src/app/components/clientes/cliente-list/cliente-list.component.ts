@@ -17,7 +17,8 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 export class ClienteListComponent implements OnInit {
 
   clienteList: Cliente[];
-
+    conta:number;
+    buscar:string;
   
   constructor(
     public clienteService2: ClienteService,
@@ -27,7 +28,11 @@ export class ClienteListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    return this.clienteService.getClientes()
+    this.mostrarRegistros(); 
+  }
+
+  mostrarRegistros(){
+    this.clienteService.getClientes()
       .snapshotChanges().subscribe(item => {
         this.clienteList = [];
         item.forEach(element => {
@@ -50,12 +55,34 @@ export class ClienteListComponent implements OnInit {
     this.clienteService2.ticket=true;
   }
   onDelete($key: string) {
-    if (confirm('Are you sure you want to delete it?')) {
+    if (confirm('Estas seguro de borrar el registro seleccionado?')) {
       this.clienteService.deleteProduct($key);
       this.toastr.warning('Borrado exitoso', 'Cliente removido');
     }
   }
 
+  consulClie(){
+    
+
+    this.clienteService.getClientes()
+      .snapshotChanges().subscribe(item => {
+        this.clienteList = [];
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x["$key"] = element.key;
+          this.clienteList.push(x as Cliente);
+        });
+
+        this.clienteList = this.clienteList.filter(data => {
+          return data.dui.toString().trim() === this.buscar;
+        })
+  
+        if(this.clienteList.length === 0){
+          this.toastr.warning('Registro no encontrado', 'Advertencia');
+          this.mostrarRegistros();
+        }
+      });
+  }
   
 // Para limpiar el formulario
 resetForm(clienteForm2?: NgForm) {

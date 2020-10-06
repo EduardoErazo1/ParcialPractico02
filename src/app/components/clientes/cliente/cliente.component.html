@@ -1,4 +1,4 @@
-<p>UNO product works!</p>
+
 <div class="card mt-5" [hidden]="clienteService.ticket">
     <div class="card-body">
 
@@ -40,14 +40,15 @@
 
             <div class="form-group">
                 <button class="btn btn-primary" type="submit" [hidden]="clienteService.ticket2">
-                    <i class="fas fa-plus-circle"></i> Agregar CLiente
+                    <i class="fas fa-plus-circle"></i> Agregar Cliente
                 </button>
                 <button class="btn btn-primary" type="submit" [hidden]="!clienteService.ticket2">
-                  <i class="fas fa-plus-circle"></i> Agregar CLiente
+                  <i class="fas fa-plus-circle"></i> Agregar Cliente
               </button>
                 <button class="btn btn-secondary" type="reset" (click)="resetForm(clienteForm)">
                     <i class="fas fa-sync-alt"></i> Reset
                 </button>
+                
             </div>
         </form>
     </div>
@@ -87,19 +88,19 @@
                           <h6 class="my-0"> Costo:</h6>
                           
                         </div>
+                        <span class="text-muted" [hidden]="">{{clienteService.selectedCliente.costo}}</span>
                         <span class="text-muted">{{clienteService.selectedCliente.costo}}</span>
                       </li>
                       <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
-                          <h6 class="my-0">Descuento</h6>
-                          
+                          <h6 class="my-0">Descuento</h6>                          
                         </div>
-                        <!--<span class="text-muted">{{descuentot}}</span>-->
+                        <span class="text-muted">{{clienteService.selectedCliente.descuento}}</span>
                       </li>
                                               
                       <li class="list-group-item d-flex justify-content-between">
                         <span>Total (USD)</span>
-                      <!--  <strong *ngIf="montot!=0">${{montot}}</strong>-->
+                      <strong *ngIf="clienteService.selectedCliente.total !=0">${{clienteService.selectedCliente.total}}</strong>
                       </li>
                     </ul>
             </div>
